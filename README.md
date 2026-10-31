@@ -98,83 +98,28 @@ Para evaluar de forma independiente el inicio de sesión y la adaptación del pa
 
 ---
 
-## 🚀 Guía de Despliegue y Ejecución del Proyecto
+## 🚀 Guía de Clonación del Repositorio
 
-Siga estos pasos para clonar y ejecutar el entorno completo mediante Docker en cualquier computadora:
+Para clonar y disponer del código fuente del proyecto en su equipo local:
 
-### 1. Prerrequisitos
-- Tener instalado [Git](https://git-scm.com/).
-- Tener instalado y en ejecución [Docker Desktop](https://www.docker.com/products/docker-desktop/).
-
-### 2. Clonar el repositorio
-Abra una terminal (PowerShell, Bash o CMD) y clone el repositorio:
+### 1. Clonar el repositorio
+Abra su terminal (PowerShell, Git Bash o CMD) y ejecute el siguiente comando:
 ```bash
 git clone https://github.com/fabianaramirez11uni-hue/SIGAC-9-1-1.git
+```
+
+### 2. Ingresar a la carpeta del proyecto
+```bash
 cd SIGAC-9-1-1
-```
-
-### 3. Configurar variables de entorno
-Cree el archivo `.env` a partir de la plantilla segura proporcionada:
-- **En Windows PowerShell:**
-  ```powershell
-  Copy-Item .env.example .env
-  ```
-- **En Linux / macOS / Bash:**
-  ```bash
-  cp .env.example .env
-  ```
-
-### 4. Construir y levantar los contenedores
-Ejecute Docker Compose para construir las imágenes y levantar los 3 servicios (`db`, `backend` y `frontend`):
-```bash
-docker compose up -d --build
-```
-*(Espere unos instantes mientras se descargan las imágenes base y se compilan las dependencias).*
-
-### 5. Aplicar migraciones en PostgreSQL (solo la primera vez)
-```bash
-docker compose exec backend python manage.py migrate
-```
-
-### 6. Cargar los usuarios iniciales de prueba (Opcional, en base de datos limpia)
-```bash
-docker compose exec backend python manage.py shell -c "from apps.accounts.models import CustomUser; CustomUser.objects.filter(username='admin').exists() or CustomUser.objects.create_superuser('admin', 'admin.sigac911@gmail.com', 'admin1234', first_name='Coordinador', last_name='General', role=CustomUser.Role.ADMIN); CustomUser.objects.filter(username='gestor_prensa').exists() or CustomUser.objects.create_user('gestor_prensa', 'prensa.ven911@gmail.com', 'gestor1234', first_name='Lcda. Maria', last_name='Fernandez', role=CustomUser.Role.GESTOR, is_staff=True); CustomUser.objects.filter(username='articulador_social').exists() or CustomUser.objects.create_user('articulador_social', 'articulador911@gmail.com', 'articulador1234', first_name='Fabiana', last_name='Ramirez', role=CustomUser.Role.USUARIO); CustomUser.objects.filter(username='visitante_inst').exists() or CustomUser.objects.create_user('visitante_inst', 'visitante911.barinas@gmail.com', 'visitante1234', first_name='Visitante', last_name='Comunitario', role=CustomUser.Role.VISITANTE); print('Usuarios listos para pruebas.')"
 ```
 
 ---
 
-## 🌐 Enlaces de Acceso Local
-
-Una vez iniciados los contenedores, ingrese desde su navegador a:
+## 🌐 Enlaces del Sistema
 
 - 💻 **Frontend Web (Vite + React):** [http://localhost:5173](http://localhost:5173)
 - ⚙️ **Backend API (Django REST Framework):** [http://localhost:8000/api/health/](http://localhost:8000/api/health/)
 - 🛡️ **Panel Administrativo (Django Admin):** [http://localhost:8000/admin/](http://localhost:8000/admin/)
-
----
-
-## 🛑 Comandos Útiles de Docker
-
-- **Ver estado de los contenedores:**
-  ```bash
-  docker compose ps
-  ```
-- **Consultar los registros en tiempo real (logs):**
-  ```bash
-  docker compose logs -f
-  ```
-- **Pausar los contenedores (sin borrar datos):**
-  ```bash
-  docker compose stop
-  ```
-- **Reanudar los contenedores:**
-  ```bash
-  docker compose start
-  ```
-- **Detener y desmontar los contenedores:**
-  ```bash
-  docker compose down
-  ```
 
 ---
 
