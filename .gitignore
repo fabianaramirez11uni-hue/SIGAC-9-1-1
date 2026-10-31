@@ -1,0 +1,72 @@
+# ==============================================================================
+# SIGAC 9-1-1 - REGLAS DE EXCLUSIÓN DE CONTROL DE VERSIONES (.gitignore)
+# CCCT VEN 9-1-1 Barinas
+# Asignatura: Desarrollo de Aplicaciones I (Ingeniería Informática)
+# ==============================================================================
+# Propósito:
+# Evitar que archivos temporales, dependencias pesadas, datos locales o secretos
+# confidenciales sean registrados en el repositorio Git y expuestos en GitHub.
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. SECRETOS Y VARIABLES DE ENTORNO (CRÍTICO DE SEGURIDAD)
+# ------------------------------------------------------------------------------
+# Nunca deben subirse contraseñas de PostgreSQL ni la clave SECRET_KEY de Django
+.env
+.env.local
+.env.*.local
+*.env
+
+# ------------------------------------------------------------------------------
+# 2. PYTHON Y DJANGO
+# ------------------------------------------------------------------------------
+# Bytecode compilado de Python (no se debe versionar, se regenera automáticamente)
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Base de datos SQLite local (en caso de pruebas aisladas sin Docker)
+*.sqlite3
+
+# Archivos multimedia subidos por los usuarios (fotos y videos institucionales).
+# Solo se versiona la estructura de carpetas, no los archivos cargados en pruebas.
+backend/media/
+
+# Archivos estáticos recolectados por el comando 'collectstatic' de Django
+backend/staticfiles/
+
+# Registros de log de ejecución
+*.log
+
+# ------------------------------------------------------------------------------
+# 3. NODE.JS Y VITE
+# ------------------------------------------------------------------------------
+# Paquetes y librerías de JavaScript (ocupan cientos de MB y se instalan vía package.json)
+frontend/node_modules/
+
+# Directorio de salida compilado para producción
+frontend/dist/
+frontend/dist-ssr/
+
+# Logs de error de gestores de paquetes
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ------------------------------------------------------------------------------
+# 4. VOLÚMENES Y DATOS LOCALES DE DOCKER
+# ------------------------------------------------------------------------------
+# Evita versionar la carpeta de datos físicos si se mapea fuera del volumen nombrado
+postgres_data/
+
+# ------------------------------------------------------------------------------
+# 5. CONFIGURACIONES DE EDITORES Y SISTEMAS OPERATIVOS
+# ------------------------------------------------------------------------------
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+desktop.ini

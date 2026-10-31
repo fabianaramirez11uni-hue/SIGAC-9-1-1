@@ -1,0 +1,23 @@
+# ==============================================================================
+# SIGAC 9-1-1 - DEPENDENCIAS DE PYTHON (Backend)
+# Asignatura: Desarrollo de Aplicaciones I - CCCT VEN 9-1-1 Barinas
+# ==============================================================================
+
+# Framework web principal: gestión de modelos ORM, autenticación, admin y migraciones
+Django>=5.1,<5.2
+
+# Toolkit para la creación de APIs REST profesionales, serializadores y vistas basadas en clases
+djangorestframework>=3.15,<3.16
+
+# Middleware para habilitar el intercambio de recursos de origen cruzado (CORS),
+# permitiendo que el frontend Vite.js (puerto 5173) haga peticiones HTTP a Django (puerto 8000)
+django-cors-headers>=4.4,<4.5
+
+# Adaptador de conexión de alto rendimiento entre Python/Django y la base de datos PostgreSQL
+psycopg2-binary>=2.9.9
+
+# Carga variables de configuración desde archivos .env para no quemar credenciales en el código
+python-dotenv>=1.0.1
+
+# Biblioteca de procesamiento y validación de imágenes, necesaria para ImageField en evidencias
+Pillow>=10.4.0

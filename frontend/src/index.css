@@ -1,0 +1,25 @@
+/* ==============================================================================
+ * SIGAC 9-1-1 - ESTILOS GLOBALES (index.css)
+ * CCCT VEN 9-1-1 Barinas
+ * ==============================================================================
+ * Propósito:
+ * Inyecta las capas fundamentales de Tailwind CSS en el bundle de la aplicación:
+ * 1. @tailwind base: normaliza los estilos HTML entre navegadores (Preflight).
+ * 2. @tailwind components: clases reutilizables de componentes.
+ * 3. @tailwind utilities: todas las clases de utilidad generadas a demanda.
+ * ============================================================================== */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Configuración del esquema de color global */
+:root {
+  color-scheme: light;
+}
+
+/* Asegura que el cuerpo de la página ocupe al menos el 100% de la altura de la pantalla */
+body {
+  margin: 0;
+  min-height: 100vh;
+}

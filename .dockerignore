@@ -1,0 +1,36 @@
+# ==============================================================================
+# SIGAC 9-1-1 - REGLAS DE EXCLUSIÓN PARA DOCKER (.dockerignore)
+# CCCT VEN 9-1-1 Barinas
+# ==============================================================================
+# Propósito:
+# Indica al demonio de Docker qué archivos NO debe copiar al contexto de
+# construcción de las imágenes. Esto acelera notablemente 'docker-compose build'
+# y previene filtraciones de credenciales dentro de las imágenes.
+# ==============================================================================
+
+# Historial de Git (no es necesario dentro del contenedor de producción)
+.git
+.gitignore
+
+# Archivos de entorno con credenciales secretas
+.env
+.env.*
+
+# Documentación técnica
+README.md
+
+# Archivos compilados y cachés de Python
+**/__pycache__
+**/*.pyc
+**/*.pyo
+**/*.pyd
+
+# Módulos de Node del sistema anfitrión (Windows)
+# El contenedor de frontend instalará sus propios binarios nativos para Linux Alpine
+**/node_modules
+**/dist
+
+# Carpetas de datos locales
+postgres_data
+backend/media
+backend/staticfiles

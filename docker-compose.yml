@@ -1,0 +1,155 @@
+# ==============================================================================
+# SIGAC 9-1-1 - ARCHIVO DE ORQUESTACIÓN DE CONTENEDORES (Docker Compose)
+# Institución: CCCT VEN 9-1-1 Barinas
+# Asignatura: Desarrollo de Aplicaciones I (7mo Semestre - Ingeniería Informática)
+# ==============================================================================
+# Propósito:
+# Este archivo define y gestiona de manera centralizada la infraestructura de los
+# tres servicios necesarios para el proyecto:
+#   1. db: Base de datos relacional PostgreSQL 16.
+#   2. backend: API REST desarrollada en Django con Django REST Framework.
+#   3. frontend: Aplicación web reactiva desarrollada en Vite.js con React.
+#
+# Ventaja académica:
+# Garantiza la reproducibilidad del entorno de desarrollo. Cualquier docente o
+# evaluador puede clonar el código y levantar toda la solución con un solo comando:
+# 'docker-compose up -d --build', sin instalar PostgreSQL ni Node en su anfitrión.
+# ==============================================================================
+
+services:
+  # ----------------------------------------------------------------------------
+  # SERVICIO 1: Base de Datos Relacional (PostgreSQL)
+  # ----------------------------------------------------------------------------
+  db:
+    # Imagen oficial ligera basada en Alpine Linux para optimizar espacio y recursos
+    image: postgres:16-alpine
+    container_name: sigac_db
+    restart: unless-stopped # Reinicia el contenedor si se cae inesperadamente
+
+    # Variables de entorno cargadas dinámicamente desde el archivo .env
+    # En caso de que no existan, se utilizan valores por defecto seguros para desarrollo
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-sigac_db}
+      POSTGRES_USER: ${POSTGRES_USER:-sigac_admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-sigac_dev_pass_911}
+
+    # Exposición de puertos: mapea el puerto 5432 del contenedor al 5432 del anfitrión
+    # Esto permite conectarse con herramientas externas de base de datos (DBeaver, pgAdmin)
+    ports:
+      - "5432:5432"
+
+    # Persistencia de datos:
+    # Los contenedores son efímeros (si se destruyen, se pierde lo que está adentro).
+    # Este volumen asegura que las tablas y registros no se borren al apagar el contenedor.
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    # Comprobación de salud (Healthcheck):
+    # Ejecuta periódicamente 'pg_isready' para verificar que PostgreSQL ya terminó de iniciar
+    # y puede aceptar conexiones antes de que el backend intente comunicarse con él.
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-sigac_admin} -d ${POSTGRES_DB:-sigac_db}"]
+      interval: 5s    # Frecuencia de verificación
+      timeout: 5s     # Tiempo máximo de espera por intento
+      retries: 5      # Intentos antes de marcar el servicio como no saludable
+
+    # Red interna aislada
+    networks:
+      - sigac_network
+
+  # ----------------------------------------------------------------------------
+  # SERVICIO 2: Backend Django (API REST + Panel Administrativo)
+  # ----------------------------------------------------------------------------
+  backend:
+    # Contexto de construcción: utiliza el archivo Dockerfile ubicado en la carpeta ./backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: sigac_backend
+    restart: unless-stopped
+
+    # Comando de ejecución del servidor de desarrollo de Django
+    # 0.0.0.0 es obligatorio dentro de Docker para permitir conexiones fuera del contenedor
+    command: python manage.py runserver 0.0.0.0:8000
+
+    # Volumen de enlace (Bind Mount):
+    # Sincroniza en tiempo real la carpeta ./backend de tu máquina con /app en el contenedor.
+    # Cualquier cambio en el código Python se refleja al instante gracias al hot-reload de Django.
+    volumes:
+      - ./backend:/app
+
+    # Mapeo de puerto: permite acceder al backend desde el navegador en http://localhost:8000
+    ports:
+      - "8000:8000"
+
+    # Inyección de variables de entorno desde el archivo .env
+    env_file:
+      - .env
+
+    # Sobrescritura de host de base de datos para la red de Docker:
+    # Dentro de la red de Docker, los contenedores se comunican por el nombre del servicio ('db')
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+
+    # Control de dependencia:
+    # Espera a que el servicio 'db' esté completamente 'healthy' (saludable) antes de arrancar.
+    # Esto evita el típico error de Django: 'connection refused to postgres'.
+    depends_on:
+      db:
+        condition: service_healthy
+
+    networks:
+      - sigac_network
+
+  # ----------------------------------------------------------------------------
+  # SERVICIO 3: Frontend (Vite.js + React + Tailwind CSS)
+  # ----------------------------------------------------------------------------
+  frontend:
+    # Contexto de construcción: utiliza el Dockerfile ubicado en ./frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: sigac_frontend
+    restart: unless-stopped
+
+    # Comando de inicio del servidor Vite:
+    # '--host 0.0.0.0' expone la aplicación para que sea accesible desde el navegador del host
+    command: npm run dev -- --host 0.0.0.0
+
+    # Manejo de volúmenes:
+    # 1. Bind mount: sincroniza el código del frontend en tiempo real.
+    # 2. Volumen anónimo (/app/node_modules): evita que los paquetes de Linux se mezclen
+    #    o sobrescriban con los del sistema anfitrión Windows, previniendo bloqueos de archivos.
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+    # Mapeo de puerto: accesible desde el navegador en http://localhost:5173
+    ports:
+      - "5173:5173"
+
+    # URL base del backend para que el frontend pueda consumir los endpoints de la API
+    environment:
+      - VITE_API_URL=http://localhost:8000/api
+
+    # Se inicia después de que el backend esté disponible
+    depends_on:
+      - backend
+
+    networks:
+      - sigac_network
+
+# ------------------------------------------------------------------------------
+# DEFINICIÓN DE RECURSOS GLOBALES
+# ------------------------------------------------------------------------------
+volumes:
+  # Volumen persistente administrado por Docker para los datos de PostgreSQL
+  postgres_data:
+    name: sigac_postgres_data
+
+networks:
+  # Red virtual tipo 'bridge' que permite a los contenedores comunicarse entre sí por su nombre
+  sigac_network:
+    name: sigac_network
+    driver: bridge
