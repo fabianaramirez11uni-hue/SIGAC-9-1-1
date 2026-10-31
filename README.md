@@ -125,11 +125,11 @@ cd SIGAC-9-1-1
 
 ## 🎯 Conclusión
 
-El desarrollo del proyecto **SIGAC 9-1-1** tiene como objetivo primordial dotar al **CCCT VEN 9-1-1 Barinas** de una plataforma tecnológica centralizada, confiable y segura que optimice la planificación, organización, archivo de evidencias audiovisuales y seguimiento de las actividades comunicacionales e institucionales, sustituyendo procedimientos manuales y dispersos por un flujo de trabajo digitalizado, eficiente y auditable.
+El desarrollo del proyecto **SIGAC 9-1-1** tiene como objetivo primordial dotar al área de Gestión Comunicacional del **CCCT VEN 9-1-1 Barinas** de una plataforma tecnológica centralizada, confiable y segura que optimice la planificación, organización, archivo de evidencias audiovisuales y seguimiento de las actividades comunicacionales e institucionales, sustituyendo procedimientos manuales y dispersos por un flujo de trabajo digitalizado, eficiente y auditable.
 
 Por su parte, la adopción de la **Metodología de Desarrollo en V** (específicamente su rama descendente de análisis y diseño) tiene como propósito garantizar un proceso de ingeniería de software riguroso, ordenado y con alta trazabilidad. Este enfoque metodológico asegura que cada necesidad institucional identificada se traduzca de forma sistemática en especificaciones técnicas, diseño arquitectónico y componentes modulares, permitiendo que cada etapa de construcción cuente con criterios claros de verificación y sentando bases sólidas para las futuras pruebas de aseguramiento de calidad del sistema.
 
 ---
 
 ## 📄 Licencia y Uso Académico
-Proyecto académico desarrollado para la asignatura **Desarrollo de Aplicaciones I**, Carrera de Ingeniería Informática. Uso institucional interno para el **Centro de Comando, Control y Telecomunicaciones CCCT VEN 9-1-1 Barinas**.
+Proyecto académico desarrollado para la asignatura **Desarrollo de Aplicaciones I**, Carrera de Ingeniería Informática. Uso institucional interno para el departamento de Gestión Comunicacional del **Centro de Comando, Control y Telecomunicaciones CCCT VEN 9-1-1 Barinas**.
