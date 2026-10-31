@@ -1,6 +1,5 @@
-# SIGAC 9-1-1
-### Sistema de Gestión y Seguimiento de Actividades Comunicacionales
-**Centro de Comando, Control y Telecomunicaciones CCCT VEN 9-1-1 Barinas**  
+# 💜📍📡SIGAC 9-1-1
+### Sistema de Gestión y Seguimiento de Actividades Comunicacionales del CCCT VEN 9-1-1 Barinas
 *Asignatura: Desarrollo de Aplicaciones I — 7mo Semestre de Ingeniería Informática*  
 *Autora: Fabiana Ramírez*
 
@@ -11,15 +10,20 @@
 ### ¿De qué se trata el sistema?
 **SIGAC 9-1-1** es una aplicación web integral desarrollada para centralizar la planificación, organización, registro fotográfico/audiovisual y seguimiento de las actividades comunicacionales ejecutadas por el área de Gestión Comunicacional / Prensa del **CCCT VEN 9-1-1 Barinas**, así como aquellas coordinadas conjuntamente con los Órganos de Seguridad Ciudadana (OSC), cuerpos de bomberos, tránsito terrestre y comunidades organizadas.
 
-La plataforma permite gestionar el ciclo de vida completo de cada evento institucional (despliegues de seguridad, talleres de concientización escolar, efemérides patrias, jornadas comunitarias y coberturas mediáticas), asociando minutas, evidencias audiovisuales y monitoreando el estado de difusión en las redes sociales oficiales.
+La plataforma permite gestionar el ciclo de vida completo de cada evento institucional (despliegues de seguridad ciudadana, talleres de concientización escolar, efemérides patrias, jornadas comunitarias y coberturas mediáticas), asociando minutas, evidencias audiovisuales y monitoreando el estado de difusión en las redes sociales oficiales.
 
-### Origen y motivación: ¿Por qué se escogió este proyecto?
+Asimismo, permitirá registrar información relacionada con cada actividad, como fechas, ubicaciones, temas, organismos participantes y responsables. De igual manera, facilitará la incorporación de fotografías, videos y documentos, además del control del estado de las publicaciones asociadas a dichas actividades.
+
+### Origen y Motivación: ¿Por qué se escogió este proyecto?
 El proyecto surge de una necesidad institucional palpable dentro del CCCT VEN 9-1-1 Barinas. Los procesos de registro de actividades y archivo de material periodístico se realizaban previamente mediante métodos dispersos (mensajería instantánea, carpetas locales y reportes físicos), lo que ocasionaba:
 - Falta de un repositorio unificado de evidencias fotográficas de alta calidad para notas de prensa.
 - Dificultad para auditar el cumplimiento y cronograma de despliegues preventivos.
 - Ausencia de control sobre el estado de difusión de campañas institucionales en redes sociales.
 
-Como estudiante de Ingeniería Informática, se seleccionó este desarrollo para proporcionar una solución de software escalable, modular, segura y basada en contenedores (Docker), aplicando buenas prácticas de ingeniería de software para fortalecer la labor de servicio público que el VEN 9-1-1 brinda al pueblo barinés.
+Como estudiante de Ingeniería Informática, se seleccionó este desarrollo para proporcionar una solución de software escalable, modular, segura y basada en contenedores (Docker), aplicando buenas prácticas de ingeniería de software para fortalecer la labor de servicio público que el VEN 9-1-1 brinda al pueblo barinés. De igual manera, el proyecto representa una oportunidad para aplicar los conocimientos adquiridos durante la formación académica en Ingeniería Informática, mediante el desarrollo de una solución orientada a una necesidad real.
+
+### Objetivo General
+Desarrollar una aplicación web para la gestión y el seguimiento de las actividades comunicacionales del CCCT VEN 9-1-1 Barinas, que permita centralizar la información, organizar los registros institucionales y facilitar el control de las evidencias, informes y publicaciones.
 
 ---
 
@@ -125,7 +129,7 @@ cd SIGAC-9-1-1
 
 ## 🎯 Conclusión
 
-El desarrollo del proyecto **SIGAC 9-1-1** tiene como objetivo primordial dotar al área de Gestión Comunicacional del **CCCT VEN 9-1-1 Barinas** de una plataforma tecnológica centralizada, confiable y segura que optimice la planificación, organización, archivo de evidencias audiovisuales y seguimiento de las actividades comunicacionales e institucionales, sustituyendo procedimientos manuales y dispersos por un flujo de trabajo digitalizado, eficiente y auditable.
+El desarrollo del proyecto **SIGAC 9-1-1** tiene como objetivo primordial dotar al área de Gestión Comunicacional del **CCCT VEN 9-1-1 Barinas** de una plataforma tecnológica centralizada, confiable y segura que optimice la planificación, organización, archivo de evidencias audiovisuales y seguimiento de las actividades comunicacionales e institucionales, sustituyendo procedimientos manuales y dispersos por un flujo de trabajo digitalizado, eficiente y auditable, contribuyendo así a mejorar el control, la disponibilidad y la eficiencia de los procesos del área de Gestión Comunicacional / Prensa.
 
 Por su parte, la adopción de la **Metodología de Desarrollo en V** (específicamente su rama descendente de análisis y diseño) tiene como propósito garantizar un proceso de ingeniería de software riguroso, ordenado y con alta trazabilidad. Este enfoque metodológico asegura que cada necesidad institucional identificada se traduzca de forma sistemática en especificaciones técnicas, diseño arquitectónico y componentes modulares, permitiendo que cada etapa de construcción cuente con criterios claros de verificación y sentando bases sólidas para las futuras pruebas de aseguramiento de calidad del sistema.
 
