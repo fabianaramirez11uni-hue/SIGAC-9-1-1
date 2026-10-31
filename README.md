@@ -1,8 +1,8 @@
 # 💜📍📡SIGAC 9-1-1
 ### Sistema de Gestión y Seguimiento de Actividades Comunicacionales del CCCT VEN 9-1-1 Barinas
 *Asignatura: Desarrollo de Aplicaciones I — 7mo Semestre de Ingeniería Informática*.  
-*Sección: T-01.* 
 *Autora: Fabiana Ramírez C.I: 31.226.080.* 
+*Sección: T-01.* 
 
 ---
 
