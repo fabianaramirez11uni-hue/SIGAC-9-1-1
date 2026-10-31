@@ -92,8 +92,7 @@ Para evaluar de forma independiente el inicio de sesión y la adaptación del pa
 | **1. Administrador** | `admin` | `admin1234` | `admin.sigac911@gmail.com` | Gestión de personal, creación controlada de funcionarios, asignación de roles y acceso a Django Admin. |
 | **2. Gestor de Prensa** | `gestor_prensa` | `gestor1234` | `prensa.ven911@gmail.com` | Planificación de actividades, gestión de evidencias (fotos/videos) y monitoreo de redes sociales. |
 | **3. Usuario Articulador** | `articulador_social` | `articulador1234` | `articulador911@gmail.com` | Registro y actualización de actividades asignadas y elaboración de minutas. |
-| **4. Usuario Operativo** | `operador_com` | `usuario1234` | `operador911.barinas@gmail.com` | Consulta operativa de tareas y despliegues asignados en sala técnica. |
-| **5. Visitante** | `visitante_inst` | `visitante1234` | `visitante911.barinas@gmail.com` | Cartelera informativa pública. Restricción estricta de seguridad ante datos privados. |
+| **4. Visitante** | `visitante_inst` | `visitante1234` | `visitante911.barinas@gmail.com` | Cartelera informativa pública. Restricción estricta de seguridad ante datos privados. |
 
 > **Nota:** El panel administrativo de Django también se encuentra disponible en: **`http://localhost:8000/admin/`** con las credenciales del usuario `admin`.
 
@@ -139,7 +138,7 @@ docker compose exec backend python manage.py migrate
 
 ### 6. Cargar los usuarios iniciales de prueba (Opcional, en base de datos limpia)
 ```bash
-docker compose exec backend python manage.py shell -c "from apps.accounts.models import CustomUser; CustomUser.objects.filter(username='admin').exists() or CustomUser.objects.create_superuser('admin', 'admin.sigac911@gmail.com', 'admin1234', first_name='Coordinador', last_name='General', role=CustomUser.Role.ADMIN); CustomUser.objects.filter(username='gestor_prensa').exists() or CustomUser.objects.create_user('gestor_prensa', 'prensa.ven911@gmail.com', 'gestor1234', first_name='Lcda. Maria', last_name='Fernandez', role=CustomUser.Role.GESTOR, is_staff=True); CustomUser.objects.filter(username='articulador_social').exists() or CustomUser.objects.create_user('articulador_social', 'articulador911@gmail.com', 'articulador1234', first_name='Fabiana', last_name='Ramirez', role=CustomUser.Role.USUARIO); CustomUser.objects.filter(username='operador_com').exists() or CustomUser.objects.create_user('operador_com', 'operador911.barinas@gmail.com', 'usuario1234', first_name='Carlos', last_name='Mendoza', role=CustomUser.Role.USUARIO); CustomUser.objects.filter(username='visitante_inst').exists() or CustomUser.objects.create_user('visitante_inst', 'visitante911.barinas@gmail.com', 'visitante1234', first_name='Visitante', last_name='Comunitario', role=CustomUser.Role.VISITANTE); print('Usuarios listos para pruebas.')"
+docker compose exec backend python manage.py shell -c "from apps.accounts.models import CustomUser; CustomUser.objects.filter(username='admin').exists() or CustomUser.objects.create_superuser('admin', 'admin.sigac911@gmail.com', 'admin1234', first_name='Coordinador', last_name='General', role=CustomUser.Role.ADMIN); CustomUser.objects.filter(username='gestor_prensa').exists() or CustomUser.objects.create_user('gestor_prensa', 'prensa.ven911@gmail.com', 'gestor1234', first_name='Lcda. Maria', last_name='Fernandez', role=CustomUser.Role.GESTOR, is_staff=True); CustomUser.objects.filter(username='articulador_social').exists() or CustomUser.objects.create_user('articulador_social', 'articulador911@gmail.com', 'articulador1234', first_name='Fabiana', last_name='Ramirez', role=CustomUser.Role.USUARIO); CustomUser.objects.filter(username='visitante_inst').exists() or CustomUser.objects.create_user('visitante_inst', 'visitante911.barinas@gmail.com', 'visitante1234', first_name='Visitante', last_name='Comunitario', role=CustomUser.Role.VISITANTE); print('Usuarios listos para pruebas.')"
 ```
 
 ---
@@ -181,3 +180,4 @@ Una vez iniciados los contenedores, ingrese desde su navegador a:
 
 ## 📄 Licencia y Uso Académico
 Proyecto académico desarrollado para la asignatura **Desarrollo de Aplicaciones I**, Carrera de Ingeniería Informática. Uso institucional interno para el **Centro de Comando, Control y Telecomunicaciones CCCT VEN 9-1-1 Barinas**.
+
